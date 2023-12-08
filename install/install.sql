@@ -1,0 +1,71 @@
+
+CREATE TABLE IF NOT EXISTS sender
+(
+	ID int not null auto_increment,
+	NAME varchar(500) not null,
+	PRIMARY KEY (ID)
+);
+CREATE TABLE message
+(
+	ID int not null auto_increment,
+	CREATED_AT DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	UPDATED_AT DATETIME NULL DEFAULT NULL,
+	COMPLETED_AT DATETIME NULL DEFAULT NULL,
+	TITLE varchar(100) not null,
+	DESCRIPTION text not null,
+	SENDER_ID int,
+
+	PRIMARY KEY (ID),
+	FOREIGN KEY FK_MESSAGE_SENDER (SENDER_ID)
+		REFERENCES sender(ID)
+		ON UPDATE RESTRICT
+		ON DELETE RESTRICT
+);
+
+CREATE TABLE employee
+(
+	ID int not null auto_increment,
+	POSITION varchar(100) not null,
+	NAME varchar(500) not null,
+	LOGIN varchar(500) not null,
+	PASSWORD char(60) not null,
+	PRIMARY KEY (ID)
+);
+
+CREATE TABLE message_employee
+(
+	MESSAGE_ID int not null,
+	EMPLOYEE_ID int not null,
+	PRIMARY KEY (MESSAGE_ID, EMPLOYEE_ID),
+	FOREIGN KEY FK_ME_MOVIE (MESSAGE_ID)
+		REFERENCES message(ID)
+		ON UPDATE RESTRICT
+		ON DELETE RESTRICT,
+	FOREIGN KEY FK_ME_ACTOR (EMPLOYEE_ID)
+		REFERENCES employee(ID)
+		ON UPDATE RESTRICT
+		ON DELETE RESTRICT
+);
+
+CREATE TABLE positions
+(
+	ID int not null auto_increment,
+	CODE varchar(500) not null,
+	NAME varchar(500) not null,
+	PRIMARY KEY (ID)
+);
+
+CREATE TABLE message_position
+(
+	MESSAGE_ID int not null,
+	POSITIONS_ID int not null,
+	PRIMARY KEY (MESSAGE_ID, POSITIONS_ID),
+	FOREIGN KEY FK_MP_MESSAGE (MESSAGE_ID)
+		REFERENCES message(ID)
+		ON UPDATE RESTRICT
+		ON DELETE RESTRICT,
+	FOREIGN KEY FK_MP_POSITIONS (POSITIONS_ID)
+		REFERENCES positions(ID)
+		ON UPDATE RESTRICT
+		ON DELETE RESTRICT
+);
