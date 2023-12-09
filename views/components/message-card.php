@@ -10,7 +10,7 @@
 		<div class="post__header_container">
 			<img src="/assets/images/person.svg" alt="#" class="post__person_img">
 			<div class="post__personInfo">
-				<p class="post__person__name"><?= $message['sender']?></p>
+				<p class="post__person__name">Гаус Юлия</p>
 				<p class="post__person__date">Сегодня, 10:58</p>
 			</div>
 		</div>
@@ -18,7 +18,7 @@
 	</div>
 	<div class="post__body">
 		<p class="message__adress">
-			Кому: Всем сотрудникам
+			Кому: <?= $message['employees']?>
 		</p>
 		<p class="message__title">
 			<?= $message['title']?>
@@ -41,7 +41,7 @@
 		<div class="post__input" id="commentForm">
 			<img src="/assets/images/persons/7.svg" alt="#" class="post__person_img">
 			<form class="post__form">
-				<input type="text">
+				<input type="text" name="comment">
 				<button class="post__sendBtn" type="submit"><img class="sendImg" src="/assets/images/sendBtn.svg" alt="send comment"></button>
 			</form>
 		</div>

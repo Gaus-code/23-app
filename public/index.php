@@ -12,15 +12,21 @@ $connection = getDbConnection();
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
 	$title = trim($_POST['title']);
+	$comment = trim($_POST['comment']);
 	if (strlen($title) > 0)
 	{
-		$message = new Message($title, $description, $sender);
-		$repository->add($message);
+		$message = addMessageToDatabase($connection);
 		redirect('/?saved=true');
 	}
 	else
 	{
 		$errors[] = 'Message cannot be empty 🙃';
+	}
+
+	if (strlen($comment) > 0)
+	{
+		$comment = addCommentToDatabase($connection);
+		redirect('/?saved=true');
 	}
 }
 
@@ -37,12 +43,12 @@ if(isset($_GET['date']))
 	if ($today !== date('Y-m-d', $time))
 	{
 		$isHistory = true;
-		$title = sprintf('ToDoList : %s', date('j M', $time));
 	}
 }
 
 echo renderTemplate('layout',[
 	'title' => $title,
+	'comment' => $comment,
 	'page' => renderTemplate('pages/main',[
 		'messages' =>  getMessageList($connection),
 		'isHistory' => $isHistory,

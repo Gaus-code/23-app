@@ -6,13 +6,13 @@ function getMessageList($connection): array
 		SELECT m.ID, 
 		m.TITLE,
 		m.DESCRIPTION,
-		d.name AS sender,
+		m.CREATED_AT,
 		GROUP_CONCAT(a.name) AS employees
 		FROM message m
 		JOIN message_employee ma ON m.id = ma.MESSAGE_ID
 		JOIN employee a ON ma.EMPLOYEE_ID = a.id
-		JOIN sender d ON m.SENDER_ID = d.id
-		GROUP BY m.ID;
+		GROUP BY m.ID
+		ORDER BY CREATED_AT DESC;
 	");
 	if (!$result)
 	{
@@ -26,22 +26,53 @@ function getMessageList($connection): array
 			'id' => $row['ID'],
 			'title' => $row['TITLE'],
 			'description' => $row['DESCRIPTION'],
-			'sender' => $row['sender'],
+			'employees' => $row['employees']
 		];
 	}
 	return $messages;
 }
 
-function addMessageToDatabase($connection, $message): bool
+function addMessageToDatabase($connection): bool
 {
-	$sql = "INSERT INTO message (id, created_at, updated_at, completed_at, title, description, sender_id) VALUES ('$message')";
+	try
+	{
+		$id = random_int(31, 20000);
+	}
+	catch (Exception $e)
+	{
+		throw new Exception('no random int');
+	}
+	$title = $_REQUEST['title'];
+	$description = $_REQUEST['description'];
 
-	if (mysqli_query($connection, $sql))
+	$sql = "INSERT INTO message (id, title, description) VALUES ('$id', '$title', '$description')";
+
+	$insert = mysqli_query($connection, $sql);
+	if (!$insert)
 	{
-		return true;
+		throw new Exception(mysqli_error($connection));
 	}
-	else
+	return $insert;
+}
+
+function addCommentToDatabase($connection): bool
+{
+	try
 	{
-		return "Ошибка: " . $sql . "<br>" . mysqli_error($connection);
+		$id = random_int(31, 20000);
 	}
+	catch (Exception $e)
+	{
+		throw new Exception('no random int');
+	}
+	$title = $_REQUEST['comment'];
+
+	$sql = "INSERT INTO message (id, title) VALUES ('$id', '$title')";
+
+	$insert = mysqli_query($connection, $sql);
+	if (!$insert)
+	{
+		throw new Exception(mysqli_error($connection));
+	}
+	return $insert;
 }
