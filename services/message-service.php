@@ -31,3 +31,17 @@ function getMessageList($connection): array
 	}
 	return $messages;
 }
+
+function addMessageToDatabase($connection, $message): bool
+{
+	$sql = "INSERT INTO message (id, created_at, updated_at, completed_at, title, description, sender_id) VALUES ('$message')";
+
+	if (mysqli_query($connection, $sql))
+	{
+		return true;
+	}
+	else
+	{
+		return "Ошибка: " . $sql . "<br>" . mysqli_error($connection);
+	}
+}

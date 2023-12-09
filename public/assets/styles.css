@@ -158,6 +158,7 @@ body
 	flex-direction: row;
 	align-items: center;
 	gap: 80px;
+	position: relative;
 }
 .header__logo_img{
     width: 70px;
@@ -256,7 +257,7 @@ body
     font-weight: 600;
     line-height: 14px;
 }
-.header__btn, .person__favBtn{
+.header__btn, .person__favBtn, .btn-success{
     color: #2FC7F7;
     border: 2px solid #2FC7F7;
     background-color: #fff;
@@ -269,6 +270,11 @@ body
     line-height: normal;
     padding-top: 3px;
     padding-bottom: 3px;
+}
+.header__btn:hover, .person__favBtn:hover, .btn-success:hover{
+	color: #fff;
+	background-color: #2FC7F7;
+	transition: 0.3s;
 }
 /*nav styles start*/
 .nav{
@@ -436,6 +442,9 @@ button:hover, .post__like, .post__comment{
     flex-direction: row;
     align-items: center;
 }
+.post__like{
+	gap: 5px;
+}
 .comment__img, #emptyHeart {
     width: 14px;
     height: 14px;
@@ -447,7 +456,7 @@ button:hover, .post__like, .post__comment{
     gap: 8px;
     align-items: center;
 }
-.post__input input{
+.post__input input, .write__form input{
     border: 2px solid rgba(239, 244, 247, 1);
     border-radius: 5px;
 }
@@ -470,4 +479,48 @@ button:hover, .post__like, .post__comment{
     width: 32px;
     height: 32px;
     margin: 0 auto;
+}
+
+#blablabla {
+	display: none;
+	animation-duration: 1.5s;
+	animation-fill-mode: both;
+	animation-name: fadeIn;
+}
+.write__form{
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	color: #233539;
+	font-size: 15px;
+	font-weight: 700;
+	line-height: normal;
+	letter-spacing: 0.13px;
+}
+.btn-success{
+	margin-top: 35px;
+}
+#blablabla.open {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	position: absolute;
+	z-index: 3;
+	top: 68px;
+	right: 0;
+	width: 400px;
+	height: 300px;
+	background-color: #F4F8F9;
+	border: 2px solid #2FC7F7;
+	border-radius: 15px;
+	padding: 15px;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }

@@ -21,3 +21,18 @@ document.getElementById('likeButton').addEventListener('click', function() {
   let randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
   this.style.color = randomColor;
 });
+
+const button = document.querySelector('button');
+const form = document.querySelector('#blablabla');
+
+button.addEventListener('click', () => {
+	if (form.classList.contains('open'))
+	{
+		form.classList.remove('open');
+	}
+	else
+	{
+		form.classList.add('open');
+	}
+});
+
