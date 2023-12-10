@@ -24,10 +24,6 @@ function renderTemplate(string $path, array $variables = []): string
 	return ob_get_clean();
 }
 
-function safe(string $value): string
-{
-	return htmlspecialchars($value, ENT_QUOTES);
-}
 function truncate(string $text, ?int $maxLength = null): string
 {
 	if ($maxLength === null)
@@ -40,5 +36,16 @@ function truncate(string $text, ?int $maxLength = null): string
 	{
 		return "$cropped...";
 	}
+
 	return $text;
+}
+
+function convertTime($messageTime): string
+{
+	if ($messageTime === null)
+	{
+		return $messageTime;
+	}
+
+	return date('H:i', strtotime($messageTime));
 }

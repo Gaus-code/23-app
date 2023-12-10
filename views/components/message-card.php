@@ -4,21 +4,21 @@
  */
 ?>
 
-<?php foreach ((array)$messages as $message): ?>
+<?php foreach ($messages as $message): ?>
 <div class="post__wrapper">
 	<div class="post__header">
 		<div class="post__header_container">
 			<img src="/assets/images/person.svg" alt="#" class="post__person_img">
 			<div class="post__personInfo">
 				<p class="post__person__name">Гаус Юлия</p>
-				<p class="post__person__date">Сегодня, 10:58</p>
+				<p class="post__person__date"><?= convertTime($message['date'])?></p>
 			</div>
 		</div>
-		<button class="person__favBtn">В избранное</button>
+		<a href="/404.php"><button class="person__favBtn">В избранное</button></a>
 	</div>
 	<div class="post__body">
 		<p class="message__adress">
-			Кому: <?= $message['employees']?>
+			Всем сотрудникам
 		</p>
 		<p class="message__title">
 			<?= $message['title']?>

@@ -1,0 +1,46 @@
+a, p, h2, button{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+.page_404{
+	padding:40px 0; background:#fff; font-family: 'Arvo', serif;
+}
+.page_404  img{
+	width:100%;
+}
+.four_zero_four_bg{
+	background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+	height: 400px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.four_zero_four_bg h1{
+	text-align: center;
+	font-size:110px;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+	letter-spacing: .6rem;
+}
+.four_zero_four_bg h2{
+	font-size:80px;
+	font-family: 'Open Sans', sans-serif;
+	letter-spacing: normal;
+}
+.link_404{
+	color: #fff!important;
+	padding: 15px 25px;
+	background: #39ac31;
+	margin: 20px 0;
+	display: inline-block;
+}
+.contant_box_404{
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	max-width: 450px;
+	margin: 50px auto;
+	font-size:24px;
+	font-family: 'Open Sans', sans-serif;
+	align-items: center;
+}

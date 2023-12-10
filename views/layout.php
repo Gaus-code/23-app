@@ -3,7 +3,10 @@
  * @var string $title
  * @var array $page
  */
+
 $connection = getDbConnection();
+$messages = getMessageList($connection);
+$comments = getCommentList($connection);
 ?>
 
 <!doctype html>
@@ -19,8 +22,8 @@ $connection = getDbConnection();
 	<?php echo renderTemplate('components/header', []);?>
 	<?php echo renderTemplate('components/nav', []);?>
 	<?php echo renderTemplate('components/aside', [
-		'connection' => $connection,
-		'messages' => getMessageList($connection)
+		'messages' => $messages,
+		'comments' => $comments,
 	]);?>
 	<?= $page ?>
 </div>

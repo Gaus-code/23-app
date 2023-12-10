@@ -7,51 +7,33 @@ $isHistory = false;
 $errors = [];
 $connection = getDbConnection();
 
+$messages = getMessageList($connection);
+$comments = getCommentList($connection);
 
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST')
+if (!empty($_POST))
 {
-	$title = trim($_POST['title']);
-	$comment = trim($_POST['comment']);
-	if (strlen($title) > 0)
+	switch ($_SERVER['REQUEST_METHOD'] === 'POST')
 	{
-		$message = addMessageToDatabase($connection);
-		redirect('/?saved=true');
+		case isset($_POST['title']):
+			$title = trim($_POST['title']);
+			$message = addMessageToDatabase($connection);
+			break;
+		case isset($_POST['comment']):
+			$comment = trim(strlen($_POST['comment']));
+			$comments = addCommentToDatabase($connection);
+			break;
+		default:
+			echo 'cannot add smth';
 	}
-	else
-	{
-		$errors[] = 'Message cannot be empty 🙃';
-	}
-
-	if (strlen($comment) > 0)
-	{
-		$comment = addCommentToDatabase($connection);
-		redirect('/?saved=true');
-	}
+	redirect('?saved=true');
 }
 
-if(isset($_GET['date']))
-{
-	$time = strtotime($_GET['date']);
-
-	if ($time === false)
-	{
-		$time = time();
-	}
-
-	$today = date('Y-m-d');
-	if ($today !== date('Y-m-d', $time))
-	{
-		$isHistory = true;
-	}
-}
 
 echo renderTemplate('layout',[
 	'title' => $title,
-	'comment' => $comment,
 	'page' => renderTemplate('pages/main',[
-		'messages' =>  getMessageList($connection),
-		'isHistory' => $isHistory,
+		'messages' =>  $messages,
+		'comments' => $comments,
 		'errors' => $errors,
 		'connection' => $connection
 	]),

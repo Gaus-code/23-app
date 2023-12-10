@@ -23,11 +23,9 @@
 				</nav>
 				<button class="writeMessage"><img class="writeIcon" src="/assets/images/write.svg" alt="add message"></button>
 				<div id="blablabla">
-					<form class="write__form" role="form" action="/requestFine" autocomplete="off" method="POST">
+					<form class="write__form" role="form" action="/" autocomplete="off" method="POST">
 						<label>Заголовок:</label>
 						<input type="text" name="title" required>
-						<label>Получатель:</label>
-						<input type="text" name="nameReq" required>
 						<label>Описание:</label>
 						<input type="text" name="description" required>
 						<button type="submit" class="btn btn-success">Отправить</button>

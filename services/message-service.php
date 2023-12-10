@@ -3,15 +3,11 @@
 function getMessageList($connection): array
 {
 	$result = mysqli_query($connection, "
-		SELECT m.ID, 
-		m.TITLE,
-		m.DESCRIPTION,
-		m.CREATED_AT,
-		GROUP_CONCAT(a.name) AS employees
-		FROM message m
-		JOIN message_employee ma ON m.id = ma.MESSAGE_ID
-		JOIN employee a ON ma.EMPLOYEE_ID = a.id
-		GROUP BY m.ID
+		SELECT message_id, 
+		message_title,
+		message_description,
+		CREATED_AT
+		FROM message
 		ORDER BY CREATED_AT DESC;
 	");
 	if (!$result)
@@ -23,15 +19,14 @@ function getMessageList($connection): array
 	while ($row = mysqli_fetch_assoc($result))
 	{
 		$messages[] = [
-			'id' => $row['ID'],
-			'title' => $row['TITLE'],
-			'description' => $row['DESCRIPTION'],
-			'employees' => $row['employees']
+			'id' => $row['message_id'],
+			'title' => $row['message_title'],
+			'description' => $row['message_description'],
+			'date' => $row['CREATED_AT'],
 		];
 	}
 	return $messages;
 }
-
 function addMessageToDatabase($connection): bool
 {
 	try
@@ -45,7 +40,7 @@ function addMessageToDatabase($connection): bool
 	$title = $_REQUEST['title'];
 	$description = $_REQUEST['description'];
 
-	$sql = "INSERT INTO message (id, title, description) VALUES ('$id', '$title', '$description')";
+	$sql = "INSERT INTO message (message_id, message_title, message_description) VALUES ('$id', '$title', '$description')";
 
 	$insert = mysqli_query($connection, $sql);
 	if (!$insert)
@@ -54,7 +49,31 @@ function addMessageToDatabase($connection): bool
 	}
 	return $insert;
 }
+function getCommentList($connection):array
+{
+	$result = mysqli_query($connection, "
+		SELECT comment_id, 
+		message_id,
+		comment_text
+		FROM comment
+		ORDER BY CREATED_AT DESC;
+	");
+	if (!$result)
+	{
+		throw new Exception(mysqli_error($connection));
+	}
 
+	$comments = [];
+	while ($row = mysqli_fetch_assoc($result))
+	{
+		$comments[] = [
+			'id' => $row['comment_id'],
+			'title' => $row['comment_text'],
+			'message-id' => $row['message_id']
+		];
+	}
+	return $comments;
+}
 function addCommentToDatabase($connection): bool
 {
 	try
@@ -65,9 +84,9 @@ function addCommentToDatabase($connection): bool
 	{
 		throw new Exception('no random int');
 	}
-	$title = $_REQUEST['comment'];
+	$comment = $_REQUEST['comment'];
 
-	$sql = "INSERT INTO message (id, title) VALUES ('$id', '$title')";
+	$sql = "INSERT INTO comment (comment_id, comment_text) VALUES ('$id' , '$comment')";
 
 	$insert = mysqli_query($connection, $sql);
 	if (!$insert)

@@ -1,6 +1,7 @@
 <?php
 /**
- * @var mysqli $connection
+ * @var array $messages
+ * @var array $comments
  */
 ?>
 
@@ -9,7 +10,8 @@
 		<div class="main__post">
 			<?php echo renderTemplate('components/message-card', [
 				'title' => option('TITLE', '23Test'),
-				'messages' => getMessageList($connection),
+				'messages' => $messages,
+				'comments' => $comments,
 			]);
 			?>
 		</div>
