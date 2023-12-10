@@ -3,13 +3,17 @@
 function getMessageList($connection): array
 {
 	$result = mysqli_query($connection, "
-		SELECT message_id, 
-		message_title,
-		message_description,
-		CREATED_AT
-		FROM message
-		ORDER BY CREATED_AT DESC;
-	");
+		SELECT 
+		    m.message_id,
+		    m.message_title,
+		    m.message_description,
+		    m.CREATED_AT,
+		    e.employee_id,
+		    e.employee_name,
+		    e.department
+		FROM message m
+		JOIN employee e ON m.employee_id = e.employee_id
+		");
 	if (!$result)
 	{
 		throw new Exception(mysqli_error($connection));
@@ -23,6 +27,9 @@ function getMessageList($connection): array
 			'title' => $row['message_title'],
 			'description' => $row['message_description'],
 			'date' => $row['CREATED_AT'],
+			'senderId' => $row['employee_id'],
+			'senderName' => $row['employee_name'],
+			'senderDepartment' => $row['department'],
 		];
 	}
 	return $messages;

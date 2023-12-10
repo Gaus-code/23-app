@@ -1,11 +1,11 @@
-CREATE TABLE employee (
+CREATE TABLE IF NOT EXISTS employee (
 	employee_id INT PRIMARY KEY,
 	employee_name VARCHAR(255),
 	department VARCHAR(255),
 	position VARCHAR(255)
 );
 
-CREATE TABLE message (
+CREATE TABLE IF NOT EXISTS message (
 	message_id INT PRIMARY KEY,
 	message_title VARCHAR(120) NOT NULL,
 	message_description TEXT,
@@ -15,7 +15,7 @@ CREATE TABLE message (
 	FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
 );
 
-CREATE TABLE comment (
+CREATE TABLE IF NOT EXISTS comment (
 	comment_id INT PRIMARY KEY,
 	message_id INT,
 	comment_text TEXT,
@@ -26,21 +26,21 @@ CREATE TABLE comment (
 	FOREIGN KEY (commenter_employee_id) REFERENCES employee(employee_id)
 );
 
-CREATE TABLE message_employee_link (
+CREATE TABLE IF NOT EXISTS message_employee_link (
 	message_id INT,
 	employee_id INT,
 	FOREIGN KEY (message_id) REFERENCES message(message_id),
 	FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
 );
 
-CREATE TABLE message_comment_link (
+CREATE TABLE IF NOT EXISTS message_comment_link (
 	message_id INT,
 	comment_id INT,
 	FOREIGN KEY (message_id) REFERENCES message(message_id),
 	FOREIGN KEY (comment_id) REFERENCES comment(comment_id)
 );
 
-CREATE TABLE comment_employee_link (
+CREATE TABLE IF NOT EXISTS comment_employee_link (
 	comment_id INT,
 	commenter_employee_id INT,
 	FOREIGN KEY (comment_id) REFERENCES comment(comment_id),
@@ -54,9 +54,9 @@ VALUES
 	(3, 'Гай Ричи', 'Security', 'Специалист по информационной безопасности'),
 	(4, 'Мартин Скорсезе', 'Support service', 'Инженер технической поддержки'),
 	(5, 'Квентин Тарантино', 'Staff', 'Уборщик'),
-	(6, 'Питер Джексон', 'System administration', ''),
+	(6, 'Питер Джексон', 'System administration', 'Администратор баз данных'),
 	(7, 'Ли Анкрич', 'Design', 'Дизайнер'),
-	(8, 'Дэмьен Шазелл', 'QA', 'Администратор баз данных');
+	(8, 'Дэмьен Шазелл', 'QA', 'Инженер по тестированию');
 
 INSERT INTO message(message_id, message_title, message_description, employee_id)
 VALUES

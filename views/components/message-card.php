@@ -10,7 +10,7 @@
 		<div class="post__header_container">
 			<img src="/assets/images/person.svg" alt="#" class="post__person_img">
 			<div class="post__personInfo">
-				<p class="post__person__name">Гаус Юлия</p>
+				<p class="post__person__name"><?= $message['senderName'] . ', ' . $message['senderDepartment']?> department</p>
 				<p class="post__person__date"><?= convertTime($message['date'])?></p>
 			</div>
 		</div>
