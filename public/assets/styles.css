@@ -524,3 +524,27 @@ button:hover, .post__like, .post__comment{
 		opacity: 1;
 	}
 }
+.commentText{
+	margin: 15px 0px;
+}
+.commentBlock
+{
+	background-color: #F4F8F9;
+	border: 2px solid #2FC7F7;
+	border-radius: 8px;
+	padding-left: 3px;
+	max-width: 400px;
+	display: flex;
+	flex-direction: row;
+	gap: 15px;
+	margin: 15px 0px;
+}
+.commentBlock p{
+	color: #323C47;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	letter-spacing: -0.276px;
+}

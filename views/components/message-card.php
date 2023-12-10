@@ -1,6 +1,7 @@
 <?php
 /**
  * @var array $messages
+ * @var array $comments
  */
 ?>
 
@@ -18,7 +19,7 @@
 	</div>
 	<div class="post__body">
 		<p class="message__adress">
-			Всем сотрудникам
+			Кому: Всем сотрудникам
 		</p>
 		<p class="message__title">
 			<?= $message['title']?>
@@ -40,11 +41,20 @@
 		</div>
 		<div class="post__input" id="commentForm">
 			<img src="/assets/images/persons/7.svg" alt="#" class="post__person_img">
-			<form class="post__form">
+			<form class="post__form" role="form" action="/" autocomplete="off" method="POST">
 				<input type="text" name="comment">
 				<button class="post__sendBtn" type="submit"><img class="sendImg" src="/assets/images/sendBtn.svg" alt="send comment"></button>
 			</form>
 		</div>
+		<?php foreach ($comments as $comment):?>
+			<?php if ($message['id'] === $comment['message-id']):?>
+				<p class="commentText">Комментарии:</p>
+				<div class="commentBlock">
+					<p class="commentCommenter"><?= $comment['commenter'] . ' (' . convertTime($comment['data']) . ') :'?></p>
+					<p class="commentTitle"><?= $comment['title']?></p>
+				</div>
+			<?php endif;?>
+		<?php endforeach; ?>
 	</div>
 </div>
 <?php endforeach; ?>
