@@ -3,6 +3,9 @@ const COMMENTFORM = document.getElementById('commentForm');
 const LIKEBUTTON = document.getElementById('likeButton');
 const IMAGE = document.getElementById('emptyHeart');
 
+const button = document.querySelector('button');
+const form = document.querySelector('#blablabla');
+
 COMMENTBUTTON.addEventListener('click', function() {
   if (COMMENTFORM.style.height === '0px' || COMMENTFORM.style.height === '') {
     COMMENTFORM.style.height = '50px';
@@ -22,9 +25,6 @@ document.getElementById('likeButton').addEventListener('click', function() {
   this.style.color = randomColor;
 });
 
-const button = document.querySelector('button');
-const form = document.querySelector('#blablabla');
-
 button.addEventListener('click', () => {
 	if (form.classList.contains('open'))
 	{
@@ -35,4 +35,20 @@ button.addEventListener('click', () => {
 		form.classList.add('open');
 	}
 });
+const editButton = document.querySelector('.edit');
+const editForm = document.querySelector('#editContainer');
+editButton.addEventListener('click', () => {
+	if (editForm.classList.contains('open'))
+	{
+		editForm.classList.remove('open');
+	}
+	else
+	{
+		editForm.classList.add('open');
+	}
+});
+function showMessage()
+{
+	alert("Данные успешно отредактированы. Обновите страницу, чтобы убедиться в этом");
+}
 

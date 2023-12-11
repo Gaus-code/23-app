@@ -127,7 +127,6 @@ function addCommentToDatabase($connection): bool
 	}
 	return $insert;
 }
-
 function getMessageById($connection, $ID): array
 {
 	$stmt = mysqli_prepare($connection, "

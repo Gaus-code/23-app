@@ -137,6 +137,7 @@ body
     padding: 20px 20px;
     margin: 0 auto;
 	max-width: 1440px;
+	position: relative;
 }
 .header{
 	width: 100%;
@@ -257,7 +258,7 @@ body
     font-weight: 600;
     line-height: 14px;
 }
-.header__btn, .person__favBtn, .btn-success{
+.header__btn, .person__favBtn, .btn-success, .Editbtn{
     color: #2FC7F7;
     border: 2px solid #2FC7F7;
     background-color: #fff;
@@ -271,7 +272,7 @@ body
     padding-top: 3px;
     padding-bottom: 3px;
 }
-.header__btn:hover, .person__favBtn:hover, .btn-success:hover{
+.header__btn:hover, .person__favBtn:hover, .btn-success:hover, .Editbtn:hover{
 	color: #fff;
 	background-color: #2FC7F7;
 	transition: 0.3s;
@@ -357,13 +358,21 @@ body
     font-size: 12px;
 }
 /*main styles start*/
-.post__wrapper {
+.main__post{
+	position: relative;
+}
+.post__wrapper, .detail__wrapper {
     grid-area: main;
     background-color: #ffff;
     border-radius: 10px;
     max-width: 930px;
     margin: 25px auto;
     padding: 20px 20px 8px;
+}
+.detail__wrapper{
+	width: 900px;
+	height: 500px;
+	position: relative;
 }
 .post__header {
     display: flex;
@@ -456,7 +465,7 @@ button:hover, .post__like, .post__comment{
     gap: 8px;
     align-items: center;
 }
-.post__input input, .write__form input{
+.post__input input, .write__form input, .editInput{
     border: 2px solid rgba(239, 244, 247, 1);
     border-radius: 5px;
 }
@@ -481,7 +490,7 @@ button:hover, .post__like, .post__comment{
     margin: 0 auto;
 }
 
-#blablabla {
+#blablabla, #editContainer {
 	display: none;
 	animation-duration: 1.5s;
 	animation-fill-mode: both;
@@ -551,9 +560,38 @@ button:hover, .post__like, .post__comment{
 .saveBlock{
 	display: flex;
 	flex-direction: row;
-	gap: 10px;
+	gap: 13px;
 }
-a.edit{
+.edit, .editImage{
 	width: 30px;
 	height: 30px;
+	border: none;
+	background-color: #fff;
+}
+
+#editContainer.open {
+	display: flex;
+	position: absolute;
+	z-index: 2;
+	top: 65px;
+	right: 40px;
+	width: 350px;
+	height: 200px;
+	background-color: #F4F8F9;
+	border: 2px solid #2FC7F7;
+	border-radius: 15px;
+	padding: 10px 0 10px 15px;
+}
+.editForm{
+	gap: 8px;
+	display: flex;
+	flex-direction: column;
+	color: #233539;
+	font-size: 15px;
+	font-weight: 700;
+	line-height: normal;
+}
+
+.editInput{
+	width: 320px;
 }

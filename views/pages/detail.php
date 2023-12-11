@@ -7,7 +7,7 @@
 ?>
 
 <?php foreach ($messages as $message): ?>
-<div class="post__wrapper">
+<div class="detail__wrapper">
 	<div class="post__header">
 		<div class="post__header_container">
 			<img src="/assets/images/person.svg" alt="#" class="post__person_img">
@@ -17,6 +17,7 @@
 			</div>
 		</div>
 		<div class="saveBlock">
+			<button class="edit"><img class="editImage" src="/assets/images/edit.svg" alt="edit message"></button>
 			<a href="/404.php"><button class="person__favBtn">В избранное</button></a>
 		</div>
 	</div>
@@ -50,7 +51,7 @@
 			</form>
 		</div>
 		<?php foreach ((array)$comments as $comment):?>
-			<?php if ($message['id'] === $comment['message-id']):?>
+			<?php if ($_GET['ID'] === $comment['message-id']):?>
 				<p class="commentText">Комментарии:</p>
 				<div class="commentBlock">
 					<p class="commentCommenter"><?= $comment['commenter'] . ' (' . convertTime($comment['data']) . ') :'?></p>
@@ -58,6 +59,16 @@
 				</div>
 			<?php endif;?>
 		<?php endforeach; ?>
+	</div>
+	<div id="editContainer">
+		<form class="editForm" action="<?= $edit ?>" method="POST">
+			<p>Редактировать сообщение</p>
+			<label>Заголовок:</label>
+			<input class="editInput" type="text" name="title" value="<?= $message['title'] ?>" required>
+			<label>Описание:</label>
+			<input class="editInput" type="text" name="description" value="<?= $message['description'] ?>" required>
+			<button onclick="showMessage()" type="submit" class="Editbtn">Отправить</button>
+		</form>
 	</div>
 </div>
 <?php endforeach; ?>
