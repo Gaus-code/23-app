@@ -28,9 +28,9 @@ php -S localhost:(номер хоста) -t public
 1. Далее заходим через точку входа в приложение. Я использую консольную команду PHPStorm (php -S localhost:8000 -t public).
 2. Попадаем на главную страницу с полной коллекцией сообщений, а также aside(справа) для просмотра их укороченной версии(при добавблении сообщения начинется scroll)
 3. Чтобы добавить сообщение, неодходимо нажать на кнопку в верхней части экрана для отображение формы создания сообщения. После нажатия на кнопку отправить, страница автоматически перезагружается с новым сообщением.
-   ![CreatingMessage screenshot]([https://github.com/{username}/{repository}/raw/{branch}/{path}/image.png](https://github.com/Gaus-code/23-app/blob/main/public/assets/images/creating.jpg)https://github.com/Gaus-code/23-app/blob/main/public/assets/images/creating.jpg)
+   ![Create screenshot](https://github.com/Gaus-code/23-app/blob/main/creating.png)
 4. Чтобы редактировать сообщение, нужно нажать на него в блоке aaside и перейти на детальную страницу сообщение, где появится кнопка для редактирования:
-   ![EditingMessage screenshot]([https://github.com/{username}/{repository}/raw/{branch}/{path}/image.png](https://github.com/Gaus-code/23-app/blob/main/public/assets/images/editing.jpg)https://github.com/Gaus-code/23-app/blob/main/public/assets/images/editing.jpg)
+   ![Edit screenshot](https://github.com/Gaus-code/23-app/blob/main/editing.png)
    Редактирование происходит автоматически, однако, нужно перезагрузить страницу вручную, чтобы увидеть отредактированное сообщение.
 6. Т.к. приложение еще в работе и аутентифекации и входа на сайт нет, сообщения и комментарии будут отображаться от моего имени.
 7. Фильтрация сообщений по времени публикации на данный момент находится в работе и пользоваться ею пока нельзя.
