@@ -128,4 +128,50 @@ function addCommentToDatabase($connection): bool
 	return $insert;
 }
 
+function getMessageById($connection, $ID): array
+{
+	$stmt = mysqli_prepare($connection, "
+		SELECT 
+		m.message_id,
+		m.message_title,
+		m.message_description,
+		m.CREATED_AT,
+		e.employee_id,
+		e.employee_name,
+		e.department,
+		c.CREATED_AT as CommentDate,
+		c.comment_text,
+		c.commenter_employee_id as comment_sender
+		FROM message m
+		JOIN employee e ON m.employee_id = e.employee_id
+		LEFT JOIN comment c ON m.message_id = c.message_id
+		LEFT JOIN employee ce ON c.commenter_employee_id = ce.employee_id
+		WHERE m.message_id = ?;
+	");
+	mysqli_stmt_bind_param($stmt, "i", $ID);
+	mysqli_stmt_execute($stmt);
+	$result = mysqli_stmt_get_result($stmt);
+	if (!$result)
+	{
+		throw new Exception(mysqli_error($connection));
+	}
+
+	$messages = [];
+	while ($row = mysqli_fetch_assoc($result))
+	{
+		$messages[] = [
+			'id' => $row['message_id'],
+			'title' => $row['message_title'],
+			'description' => $row['message_description'],
+			'date' => $row['CREATED_AT'],
+			'senderId' => $row['employee_id'],
+			'senderName' => $row['employee_name'],
+			'senderDepartment' => $row['department'],
+			'commentDate' => $row['CommentDate'],
+			'comment' => $row['comment_text'],
+		];
+	}
+	return $messages;
+}
+
 

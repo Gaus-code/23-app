@@ -548,3 +548,12 @@ button:hover, .post__like, .post__comment{
 	line-height: normal;
 	letter-spacing: -0.276px;
 }
+.saveBlock{
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+}
+a.edit{
+	width: 30px;
+	height: 30px;
+}

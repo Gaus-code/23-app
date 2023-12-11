@@ -3,7 +3,7 @@
 <nav class="nav">
 	<ul class="nav__list">
 		<li class="nav__item active-1">
-			<a href="#" class="nav__link active"><img class="nav__img" src="/assets/images/news.svg" alt="nes"></a>
+			<a href="/" class="nav__link active"><img class="nav__img" src="/assets/images/news.svg" alt="nes"></a>
 		</li>
 		<li class="nav__item active-2">
 			<a href="#" class="nav__link"><img class="nav__img" src="/assets/images/mail.svg" alt="e-mails"></a>

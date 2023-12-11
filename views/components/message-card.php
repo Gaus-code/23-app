@@ -15,7 +15,10 @@
 				<p class="post__person__date"><?= convertTime($message['date'])?></p>
 			</div>
 		</div>
-		<a href="/404.php"><button class="person__favBtn">В избранное</button></a>
+		<div class="saveBlock">
+			<a href="#" class="edit"><img src="/assets/images/edit.svg" alt="edit message"></a>
+			<a href="/404.php"><button class="person__favBtn">В избранное</button></a>
+		</div>
 	</div>
 	<div class="post__body">
 		<p class="message__adress">
@@ -46,7 +49,7 @@
 				<button class="post__sendBtn" type="submit"><img class="sendImg" src="/assets/images/sendBtn.svg" alt="send comment"></button>
 			</form>
 		</div>
-		<?php foreach ($comments as $comment):?>
+		<?php foreach ((array)$comments as $comment):?>
 			<?php if ($message['id'] === $comment['message-id']):?>
 				<p class="commentText">Комментарии:</p>
 				<div class="commentBlock">
